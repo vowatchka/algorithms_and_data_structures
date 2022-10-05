@@ -25,7 +25,7 @@ class TestSelectionSort(unittest.TestCase):
 
     def test_bubble_sort_immutable(self):
         """
-        Проверка, что функция быстрой сортировки не изменяет исходную
+        Проверка, что функция сортировки не изменяет исходную
         последовательность.
         """
         sorted_seq = selection_sort(self.seq)

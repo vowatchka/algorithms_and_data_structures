@@ -25,7 +25,7 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_bubble_sort_immutable(self):
         """
-        Проверка, что функция пузырьковой сортировки не изменяет исходную
+        Проверка, что функция сортировки не изменяет исходную
         последовательность.
         """
         sorted_seq = bubble_sort(self.seq)
