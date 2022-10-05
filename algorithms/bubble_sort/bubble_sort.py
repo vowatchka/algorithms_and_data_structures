@@ -19,9 +19,25 @@ def bubble_sort(seq: tpg.Iterable, reverse: bool = False) -> tpg.List:
         # то можно считать последовательность уже отсортированной
         return seq_copy
 
-    for i, _ in enumerate(seq_copy):
+    i = 0
+    # True - если была перестановка, False - не было перестановок.
+    # Начальное значение True, чтобы войти в цикл
+    swapped = True
+    while swapped:
+        # в начале очередной итерации еще нет перестановок
+        swapped = False
+
         for j in range(len(seq_copy) - i - 1):
             if ((not reverse and seq_copy[j] > seq_copy[j + 1])
                     or (reverse and seq_copy[j] < seq_copy[j + 1])):
                 seq_copy[j], seq_copy[j + 1] = seq_copy[j + 1], seq_copy[j]
+                swapped = True
+
+        if swapped:
+            # если была перестановка, то переходим к следующей итерации сортировки
+            i += 1
+        else:
+            # если не было перестановок, то последовательность отсортирована
+            break
+
     return seq_copy
