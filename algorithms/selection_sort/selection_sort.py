@@ -4,7 +4,7 @@
 import typing as tpg
 
 
-def selection_sort(seq: tpg.Iterable, reverse=False) -> tpg.List:
+def selection_sort(seq: tpg.Iterable, reverse: bool = False) -> tpg.List:
     """
     Сортировка выбором.
 
