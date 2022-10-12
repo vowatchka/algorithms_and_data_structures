@@ -32,6 +32,10 @@ TypeError: stack is empty
 import typing as tpg
 
 
+class EmptyStackError(TypeError):
+    pass
+
+
 class Item:
     """
     Элемент стэка.
@@ -39,6 +43,21 @@ class Item:
     def __init__(self, value: tpg.Any, next_item: tpg.Optional["Item"] = None):
         self.value = value
         self.next_item = next_item
+
+
+class StackIterator:
+    def __init__(self, source):
+        self._source = source
+        self.__item = self._source._head
+
+    def __next__(self):
+        if not self.__item:
+            raise StopIteration
+
+        value = self.__item.value
+        self.__item = self.__item.next_item
+
+        return value
 
 
 class Stack:
@@ -56,17 +75,7 @@ class Stack:
         return self._len
 
     def __iter__(self):
-        self.__item = self._head
-        return self
-
-    def __next__(self):
-        if not self.__item:
-            raise StopIteration
-
-        value = self.__item.value
-        self.__item = self.__item.next_item
-
-        return value
+        return StackIterator(self)
 
     def push(self, value: tpg.Any):
         """
@@ -107,7 +116,7 @@ class Stack:
         Вернуть верхний элемент стэка.
         """
         if not self._head:
-            raise TypeError("stack is empty")
+            raise EmptyStackError("stack is empty")
 
         return self._head.value
 
