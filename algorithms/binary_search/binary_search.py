@@ -45,5 +45,5 @@ def binary_search(seq: tpg.Iterable, searched: tpg.Any, reverse: bool = False) -
             else:
                 # продолжаем поиск правее срединного элемента
                 low = mid + 1
-    else:
-        return None
+
+    return None
